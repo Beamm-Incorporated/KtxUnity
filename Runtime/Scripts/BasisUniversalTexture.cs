@@ -40,7 +40,8 @@ namespace KtxUnity {
                 var textureType = transcoder.GetTextureType();
                 if(textureType == BasisUniversalTextureType.Image2D) {
                     yFlipped = transcoder.GetYFlip();
-                    yield return TranscodeImage2D(transcoder,data,linear);
+                    IEnumerator en = TranscodeImage2D(transcoder,data,linear);
+					while (en.MoveNext()) { yield return null; };
                 } else {
                     Debug.LogErrorFormat("Basis Universal texture type {0} is not supported",textureType);
                 }
